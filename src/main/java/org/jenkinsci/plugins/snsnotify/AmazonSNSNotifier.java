@@ -36,8 +36,12 @@ public class AmazonSNSNotifier extends Notifier {
     @Override
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
 
-        if (build.getResult() == Result.FAILURE || build.getResult() == Result.UNSTABLE) {
-
+    	
+    		
+    	if (getDescriptor().getparameterAllBuildStatus() == true || 
+    			build.getResult() == Result.FAILURE || 
+    			build.getResult() == Result.UNSTABLE) {
+        	
             String awsAccessKey = getDescriptor().getAwsAccessKey();
             String awsSecretKey = getDescriptor().getAwsSecretKey();
             String publishTopic = isEmpty(projectTopicArn) ? 
@@ -100,7 +104,8 @@ public class AmazonSNSNotifier extends Notifier {
         private String awsAccessKey;
         private String awsSecretKey;
         private String defaultTopicArn;
-
+        private boolean parameterAllBuildStatus;
+        
         public DescriptorImpl() {
             super(AmazonSNSNotifier.class);
             load();
@@ -121,7 +126,8 @@ public class AmazonSNSNotifier extends Notifier {
             awsAccessKey = formData.getString("awsAccessKey");
             awsSecretKey = formData.getString("awsSecretKey");
             defaultTopicArn = formData.getString("defaultTopicArn");
-
+            parameterAllBuildStatus = formData.getString("parameterAllBuildStatus");
+            
             save();
             return super.configure(req,formData);
         }
@@ -137,6 +143,10 @@ public class AmazonSNSNotifier extends Notifier {
         public String getDefaultTopicArn() {
             return defaultTopicArn;
         }
+        
+        public boolean getparameterAllBuildStatus() {
+            return parameterAllBuildStatus;
+        }
 
         public void setAwsAccessKey(String awsAccessKey) {
             this.awsAccessKey = awsAccessKey;
@@ -148,6 +158,10 @@ public class AmazonSNSNotifier extends Notifier {
 
         public void setDefaultTopicArn(String defaultTopicArn) {
             this.defaultTopicArn = defaultTopicArn;
+        }
+        
+        public void setparameterAllBuildStatus(boolean parameterAllBuildStatus) {
+            this.parameterAllBuildStatus = parameterAllBuildStatus;
         }
     }
 }
