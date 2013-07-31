@@ -30,7 +30,7 @@
             field="parameterAllBuildStatus"
 		    help="/plugin/snsnotifyall/help-parameterAllBuildStatus.html">
 		    
-		   <f:checkbox default="false" />
+		   <f:checkbox  field="parameterAllBuildStatus" checked="${parameterAllBuildStatus}" />
         </f:entry>
         
     </f:section>

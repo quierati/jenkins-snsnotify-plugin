@@ -22,10 +22,12 @@ import org.kohsuke.stapler.StaplerRequest;
 public class AmazonSNSNotifier extends Notifier {
 
     private final String projectTopicArn;
+    public final boolean parameterAllBuildStatus;
 
     @DataBoundConstructor
-    public AmazonSNSNotifier(String projectTopicArn) {
+    public AmazonSNSNotifier(String projectTopicArn,boolean parameterAllBuildStatus) {
         this.projectTopicArn = projectTopicArn;
+        this.parameterAllBuildStatus = parameterAllBuildStatus;
     }
 
     @Override
@@ -126,7 +128,7 @@ public class AmazonSNSNotifier extends Notifier {
             awsAccessKey = formData.getString("awsAccessKey");
             awsSecretKey = formData.getString("awsSecretKey");
             defaultTopicArn = formData.getString("defaultTopicArn");
-            parameterAllBuildStatus = formData.getString("parameterAllBuildStatus");
+            parameterAllBuildStatus = formData.getBoolean("parameterAllBuildStatus");
             
             save();
             return super.configure(req,formData);
@@ -156,12 +158,13 @@ public class AmazonSNSNotifier extends Notifier {
             this.awsSecretKey = awsSecretKey;
         }
 
-        public void setDefaultTopicArn(String defaultTopicArn) {
+       /* public void setDefaultTopicArn(String defaultTopicArn) {
             this.defaultTopicArn = defaultTopicArn;
         }
         
         public void setparameterAllBuildStatus(boolean parameterAllBuildStatus) {
             this.parameterAllBuildStatus = parameterAllBuildStatus;
         }
+        */
     }
 }
