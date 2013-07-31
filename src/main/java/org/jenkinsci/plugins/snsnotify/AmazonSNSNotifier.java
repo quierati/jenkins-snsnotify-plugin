@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.snsnotify;
+package org.jenkinsci.plugins.snsnotifyall;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sns.AmazonSNSClient;
