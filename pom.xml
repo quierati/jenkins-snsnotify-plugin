@@ -16,8 +16,9 @@
 
     <developers>
         <developer>
-            <id>mikewatt, quierati</id>
-            <name>Michael Watt, Julio Quierati</name>
+            <id>quierati</id>
+            <name>Julio Quierati</name>
+            <email>julio.quierati@gmail.com</email>
         </developer>
     </developers>
 
