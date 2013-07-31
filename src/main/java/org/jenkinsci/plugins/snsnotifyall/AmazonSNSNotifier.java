@@ -22,12 +22,11 @@ import org.kohsuke.stapler.StaplerRequest;
 public class AmazonSNSNotifier extends Notifier {
 
     private final String projectTopicArn;
-    public final boolean parameterAllBuildStatus;
+    
 
     @DataBoundConstructor
-    public AmazonSNSNotifier(String projectTopicArn,boolean parameterAllBuildStatus) {
+    public AmazonSNSNotifier(String projectTopicArn) {
         this.projectTopicArn = projectTopicArn;
-        this.parameterAllBuildStatus = parameterAllBuildStatus;
     }
 
     @Override
@@ -37,13 +36,11 @@ public class AmazonSNSNotifier extends Notifier {
 
     @Override
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
-
-    	
     		
-    	if (getDescriptor().getparameterAllBuildStatus() == true || 
+    	/*if (getDescriptor().getparameterAllBuildStatus() == true || 
     			build.getResult() == Result.FAILURE || 
     			build.getResult() == Result.UNSTABLE) {
-        	
+        */	
             String awsAccessKey = getDescriptor().getAwsAccessKey();
             String awsSecretKey = getDescriptor().getAwsSecretKey();
             String publishTopic = isEmpty(projectTopicArn) ? 
@@ -106,7 +103,7 @@ public class AmazonSNSNotifier extends Notifier {
         private String awsAccessKey;
         private String awsSecretKey;
         private String defaultTopicArn;
-        private boolean parameterAllBuildStatus;
+        // private boolean parameterAllBuildStatus;
         
         public DescriptorImpl() {
             super(AmazonSNSNotifier.class);
@@ -128,7 +125,8 @@ public class AmazonSNSNotifier extends Notifier {
             awsAccessKey = formData.getString("awsAccessKey");
             awsSecretKey = formData.getString("awsSecretKey");
             defaultTopicArn = formData.getString("defaultTopicArn");
-            parameterAllBuildStatus = formData.getBoolean("parameterAllBuildStatus");
+            // parameterAllBuildStatus = formata.getBoolean("parameterAllBuildStatus");
+
             
             save();
             return super.configure(req,formData);
@@ -145,10 +143,6 @@ public class AmazonSNSNotifier extends Notifier {
         public String getDefaultTopicArn() {
             return defaultTopicArn;
         }
-        
-        public boolean getparameterAllBuildStatus() {
-            return parameterAllBuildStatus;
-        }
 
         public void setAwsAccessKey(String awsAccessKey) {
             this.awsAccessKey = awsAccessKey;
@@ -158,8 +152,12 @@ public class AmazonSNSNotifier extends Notifier {
             this.awsSecretKey = awsSecretKey;
         }
 
-       /* public void setDefaultTopicArn(String defaultTopicArn) {
+        public void setDefaultTopicArn(String defaultTopicArn) {
             this.defaultTopicArn = defaultTopicArn;
+        }
+        /*
+        public boolean getparameterAllBuildStatus() {
+            return parameterAllBuildStatus;
         }
         
         public void setparameterAllBuildStatus(boolean parameterAllBuildStatus) {
