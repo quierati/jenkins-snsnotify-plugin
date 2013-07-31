@@ -3,32 +3,32 @@
 
         <f:entry 
             title="AWS Access Key" 
-            help="/plugin/snsnotify/help-awsAccessKey.html"
+            help="/plugin/snsnotifyall/help-awsAccessKey.html"
             field="awsAccessKey">
 
-            <f:textbox name="snsnotify.awsAccessKey" />
+            <f:textbox name="snsnotifyall.awsAccessKey" />
         </f:entry>
 
         <f:entry 
             title="AWS Secret Key" 
-            help="/plugin/snsnotify/help-awsSecretKey.html"
+            help="/plugin/snsnotifyall/help-awsSecretKey.html"
             field="awsSecretKey">
 
-            <f:password name="snsnotify.awsSecretKey" />
+            <f:password name="snsnotifyall.awsSecretKey" />
         </f:entry>
 
         <f:entry 
             title="Default notification topic ARN" 
-            help="/plugin/snsnotify/help-defaultTopicArn.html"
+            help="/plugin/snsnotifyall/help-defaultTopicArn.html"
             field="defaultTopicArn">
 
-            <f:textbox name="snsnotify.defaultTopicArn" />
+            <f:textbox name="snsnotifyall.defaultTopicArn" />
         </f:entry>
         
         <f:entry 
         	title="Notify all the build results"
             field="parameterAllBuildStatus"
-		    help="/plugin/snsnotify/help-parameterAllBuildStatus.html">
+		    help="/plugin/snsnotifyall/help-parameterAllBuildStatus.html">
 		    
 		   <f:checkbox default="false" />
         </f:entry>
